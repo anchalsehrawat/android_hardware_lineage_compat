@@ -480,6 +480,24 @@ cc_library {
     system_ext_specific: true,
 }
 
+cc_prebuilt_library_shared {
+    name: "libjsoncpp-v30",
+    vendor: true,
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: ["vndk/v30/arm/libjsoncpp-v30.so"],
+        },
+        android_arm64: {
+            srcs: ["vndk/v30/arm64/libjsoncpp-v30.so"],
+        },
+    },
+    compile_multilib: "both",
+    check_elf_files: false,
+}
+
 cc_library {
     name: "libmeminfo_shim",
     shared_libs: ["libmeminfo"],
