@@ -225,6 +225,13 @@ cc_library_shared {
 }
 
 cc_library_shared {
+    name: "android.hardware.sensors@1.0-convert-shared",
+    shared_libs: ["libhidlbase"],
+    whole_static_libs: ["android.hardware.sensors@1.0-convert"],
+    vendor_available: true,
+}
+
+cc_library_shared {
     name: "android.hidl.base@1.0",
     shared_libs: ["libhidlbase"],
     system_ext_specific: true,
@@ -257,6 +264,13 @@ cc_defaults {
         "libgui/GraphicBufferProducer.cpp",
         "libgui/SurfaceComposerClient.cpp",
     ],
+}
+
+cc_library_shared {
+    name: "libaudioclient_shim",
+    shared_libs: ["libaudioclient", "libutils", "liblog"],
+    header_libs: ["libmedia_headers"],
+    srcs: ["libaudioclient/AudioTrack.cpp"],
 }
 
 cc_library {
@@ -617,6 +631,14 @@ cc_library {
         "libip_checksum",
     ],
     vendor_available: true,
+}
+
+cc_library {
+    name: "libnativehelper_shim",
+    version_script: "libnativehelper/libnativehelper.map",
+    srcs: [
+        "libnativehelper/libnativehelper.cpp",
+    ],
 }
 
 cc_library_shared {
